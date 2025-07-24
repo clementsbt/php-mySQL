@@ -37,17 +37,18 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creation d'un livre</title>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
     <h1> Ajouter un livre</h1>
-    <form method="POST">
+    <form method="POST" class="ajout-livre">
         <div>
             <label for="titre">Titre *</label>
             <input type="text" name="titre" id="titre" required>
         </div>
         <div>
-            <label for="id_auteur">Auteur *</label>
+            <label for="i d_auteur">Auteur *</label>
             <select name="id_auteur" id="id_auteur" required>
                 <option value="">-- Sélectionnez un auteur --</option>
                 <?php foreach ($auteurs as $auteur): ?>
