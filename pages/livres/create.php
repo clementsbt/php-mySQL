@@ -2,12 +2,16 @@
 require_once('./../../config/database.php');
 require_once('./../../classes/Livre.php');
 
+$stmt = $pdo->query("SELECT id_auteur, nom, prenom FROM auteurs");
+$auteurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $livreModel = new Livre($pdo);
 $errors = [];
 
 
 // Traitement du formulaire
 if ($_POST) {
+    $id_auteur = $_POST['id_auteur'] ?? '';
     $titre = $_POST['titre'] ?? '';
     $isbn = $_POST['isbn'] ?? '';
     $date_publication = $_POST['date_publication'] ?? '';
@@ -19,7 +23,7 @@ if ($_POST) {
     // Validation des donnees (A faire)
 
     // Gestion des erreur (A faire)
-    $livreModel->create($titre, $isbn, $date_publication, $nb_pages, $nb_exemplaires, $disponible, $resume);
+    $livreModel->create($id_auteur, $titre, $isbn, $date_publication, $nb_pages, $nb_exemplaires, $disponible, $resume);
     header('Location: http://localhost/crud?message=created'); // permet de rediriger a la page d'accueil en cas de creation reussie.
 }
 
@@ -37,10 +41,21 @@ if ($_POST) {
 
 <body>
     <h1> Ajouter un livre</h1>
-    <form method="POST">    
+    <form method="POST">
         <div>
             <label for="titre">Titre *</label>
             <input type="text" name="titre" id="titre" required>
+        </div>
+        <div>
+            <label for="id_auteur">Auteur *</label>
+            <select name="id_auteur" id="id_auteur" required>
+                <option value="">-- Sélectionnez un auteur --</option>
+                <?php foreach ($auteurs as $auteur): ?>
+                    <option value="<?= $auteur['id_auteur'] ?>">
+                        <?= htmlspecialchars($auteur['prenom'] . ' ' . $auteur['nom']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <div>
             <label for="isbn">ISBN *</label>

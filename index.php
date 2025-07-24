@@ -19,33 +19,35 @@ $livres = $livreModel->getAll();
 </head>
 
 <body>
-    <h1>Liste des livres</h1>
-    <a href="pages/livres/create.php">Ajouter un livre</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Titre</th>
-                <th>Date de publication</th>
-                <th>Disponible</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($livres as $livre):  ?>
-                
-                <tr>
-                    <td><?php echo htmlspecialchars($livre['id_livre']) ?></td>
-                    <td><?php echo htmlspecialchars($livre['titre']) ?></td>
-                    <td><?php echo htmlspecialchars($livre['date_publication']) ?></td>
-                    <td><?php echo htmlspecialchars($livre['disponible']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+<h1>Liste des livres</h1>
+<a href="pages/livres/create.php">Ajouter un livre</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Date de publication</th>
+        <th>Disponible</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($livres as $livre):  ?>
 
-    <?php if (empty($livres)): ?>
-        <p>Aucun livre trouve, <a href="">Ajoutez le premier livre</a>!</p>
-    <?php endif; ?>
+        <tr>
+            <td><?php echo htmlspecialchars($livre['id_livre']) ?></td>
+            <td><?php echo htmlspecialchars($livre['titre']) ?></td>
+            <td><?php echo htmlspecialchars($livre['auteur']) ?></td>
+            <td><?php echo htmlspecialchars($livre['date_publication']) ?></td>
+            <td><?php echo htmlspecialchars($livre['disponible']) ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<?php if (empty($livres)): ?>
+    <p>Aucun livre trouve, <a href="">Ajoutez le premier livre</a>!</p>
+<?php endif; ?>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ class Livre {
     public function getAll(){
         $sql = "SELECT * FROM livres ORDER BY date_publication DESC";
 
-        $stmt = $this->pdo->query($sql);
+        $stmt = $this->pdo->query("SELECT * FROM vue_livres_complet");
         
         return $stmt->fetchAll();
     }
